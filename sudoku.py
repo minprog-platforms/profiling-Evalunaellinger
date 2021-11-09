@@ -89,6 +89,7 @@ class Sudoku:
             for x in range(9):
                 if self.value_at(x, y) == 0 and next_x == -1 and next_y == -1:
                     next_x, next_y = x, y
+                    return next_x, next_y
 
         return next_x, next_y
 
@@ -150,13 +151,13 @@ class Sudoku:
         for i in range(9):
             for value in values:
                 if value not in self.column_values(i):
-                    result = False
+                    return False
 
                 if value not in self.row_values(i):
-                    result = False
+                    return False
 
                 if value not in self.block_values(i):
-                    result = False
+                    return False
 
         return result
 
