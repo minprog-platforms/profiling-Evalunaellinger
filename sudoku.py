@@ -39,16 +39,6 @@ class Sudoku:
         """Returns the value at x,y."""
         value = -1
 
-        # # Oude code
-        # for i in range(9):
-        #     for j in range(9):
-        #         if i == x and j == y:
-        #             row = self._grid[y]
-        #             #print(row)
-        #             value = int(row[x])
-        #             # print(value)
-
-        # Nieuwe code
         row = self._grid[y]
         value = int(row[x])
 
@@ -89,6 +79,7 @@ class Sudoku:
             for x in range(9):
                 if self.value_at(x, y) == 0 and next_x == -1 and next_y == -1:
                     next_x, next_y = x, y
+                    
                     return next_x, next_y
 
         return next_x, next_y
@@ -124,18 +115,9 @@ class Sudoku:
         x_start = (i % 3) * 3
         y_start = (i // 3) * 3
 
-        # Oude code
         for x in range(x_start, x_start + 3):
             for y in range(y_start, y_start + 3):
                 values.append(self.value_at(x, y))
-
-        # # Nieuwe code
-        # for y in range(y_start, y_start + 3):
-        #     # krijg de row value en indexeer de string
-        #     row = self._grid[y]
-        #     values_row = row[x_start:(x_start + 3)]
-        #     list_row = list(values_row)
-        #     values.append(list_row)
 
         return values
 
@@ -148,6 +130,7 @@ class Sudoku:
 
         result = True
 
+        # Venieuwd
         for i in range(9):
             for value in values:
                 if value not in self.column_values(i):
@@ -157,7 +140,7 @@ class Sudoku:
                     return False
 
                 if value not in self.block_values(i):
-                    return False
+                    return False  
 
         return result
 
